@@ -1,32 +1,55 @@
-import React from 'react'
-import "./featured.css"
+import React from "react";
+import useFetch from "../../hooks/useFetch";
+import "./featured.css";
 
 const Featured = () => {
-  return (
-    <div className='featured'>
-        <div className="featuredItem">
-            <img src="https://lh3.googleusercontent.com/proxy/YLVpqFc5aHygMpZnhqhakcsCjmoM_dmHGe5OrY-LIw5LyqE4ELL2swQSTHZ4_olciFr2FlRu6R-RA5LFmjvw2-5TQIT6I3sp98iOTKrmg9YzpU2Lq16cQqdahrzaZlmj0wCEg2EDyAAcUSZ7fUkKt275kJ6m9w=w296-h202-n-k-rw-no-v1" alt="" className="featuredImg" />
-            <div className="featuredTitles">
-                <h1>Bublin</h1>
-                <h2>123 properties</h2>
-            </div>
-        </div>
-        <div className="featuredItem">
-            <img src="https://lh3.googleusercontent.com/proxy/YLVpqFc5aHygMpZnhqhakcsCjmoM_dmHGe5OrY-LIw5LyqE4ELL2swQSTHZ4_olciFr2FlRu6R-RA5LFmjvw2-5TQIT6I3sp98iOTKrmg9YzpU2Lq16cQqdahrzaZlmj0wCEg2EDyAAcUSZ7fUkKt275kJ6m9w=w296-h202-n-k-rw-no-v1" alt="" className="featuredImg" />
-            <div className="featuredTitles">
-                <h1>Bublin</h1>
-                <h2>123 properties</h2>
-            </div>
-        </div>
-        <div className="featuredItem">
-            <img src="https://lh3.googleusercontent.com/proxy/YLVpqFc5aHygMpZnhqhakcsCjmoM_dmHGe5OrY-LIw5LyqE4ELL2swQSTHZ4_olciFr2FlRu6R-RA5LFmjvw2-5TQIT6I3sp98iOTKrmg9YzpU2Lq16cQqdahrzaZlmj0wCEg2EDyAAcUSZ7fUkKt275kJ6m9w=w296-h202-n-k-rw-no-v1" alt="" className="featuredImg" />
-            <div className="featuredTitles">
-                <h1>Bublin</h1>
-                <h2>123 properties</h2>
-            </div>
-        </div>
-    </div>
-  )
-}
+  const { data, loading, error } = useFetch(
+    "hotels/countByCity?cities=Ha Noi,Da Nang,Ho Chi Minh"
+  );
 
-export default Featured
+  return (
+    <div className="featured">
+      {loading ? (
+        "Loading please wait"
+      ) : (
+        <>
+          <div className="featuredItem">
+            <img
+              src="https://a.cdn-hotels.com/gdcs/production64/d444/5252610b-aea3-4ea6-a76e-1ede20547e94.jpg"
+              alt=""
+              className="featuredImg"
+            />
+            <div className="featuredTitles">
+              <h1>Ha Noi</h1>
+              <h2>{data[0]} properties</h2>
+            </div>
+          </div>
+          <div className="featuredItem">
+            <img
+              src="https://cdnimgen.vietnamplus.vn/uploaded/wbxx/2019_04_10/da_nang_city.jpg"
+              alt=""
+              className="featuredImg"
+            />
+            <div className="featuredTitles">
+              <h1>Da Nang</h1>
+              <h2>{data[1]} properties</h2>
+            </div>
+          </div>
+          <div className="featuredItem">
+            <img
+              src="https://photo-cms-sggp.zadn.vn/Uploaded/2022/dufkxmeyxq/2022_08_29/shutterstockrf718619590_vzsd.jpg"
+              alt=""
+              className="featuredImg"
+            />
+            <div className="featuredTitles">
+              <h1>Ho Chi Minh</h1>
+              <h2>{data[2]} properties</h2>
+            </div>
+          </div>
+        </>
+      )}
+    </div>
+  );
+};
+
+export default Featured;

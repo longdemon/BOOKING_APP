@@ -6,8 +6,11 @@
     position: relative;
     z-index: 2;
 }
-.wrapper{
-    position: absolute;
+.wrapperHome{
+    position: relative;
+    display: flex;
+    gap: 10px;
+    align-items: center;
 }
 .smallHeader {
     background-color: #003580;
@@ -86,12 +89,15 @@
     color: #000;
     cursor: pointer;
 }
-.dates{
+.datesHome{
     position: absolute;
-    top: 50px;
+    top: 35px;
+    left: 0;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     transition: 0.5s;
     z-index: 2;
+    border-radius: 10px;
+    overflow: hidden;
 }
 .options {
     position: absolute;
