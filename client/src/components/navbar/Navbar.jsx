@@ -7,12 +7,20 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthConext";
 
 const Navbar = () => {
   const [nav, setNav] = useState("stays");
   const { user } = useContext(AuthContext);
+
+  const { dispatch } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT" });
+    navigate("/login");
+  };
 
   return (
     <div className="navbar">
@@ -86,7 +94,12 @@ const Navbar = () => {
           </ul>
         </div>
         {user ? (
-          user.username
+          <>
+            {user.username}
+              <p onClick={handleLogout} style={{ textDecorationLine: "underline", cursor: "pointer" }}>
+                Logout
+              </p>
+          </>
         ) : (
           <div className="navItems">
             <button className="navButton">Register</button>
